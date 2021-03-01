@@ -19,7 +19,7 @@ repositories {
 }
 
 ext {
-	restAssuredVersion = '4.3.0'
+	restAssuredVersion = '4.2.0'
 }
 
 dependencies {
@@ -48,6 +48,8 @@ dependencies {
 		exclude group: 'javax.xml.bind', module: 'jaxb-api'
 		exclude group: 'com.sun.xml.bind', module: 'jaxb-osgi'
 	}
+	testImplementation "io.rest-assured:json-path:$restAssuredVersion"
+	testImplementation "io.rest-assured:xml-path:$restAssuredVersion"
 }
 
 test {
