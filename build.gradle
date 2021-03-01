@@ -19,7 +19,7 @@ repositories {
 }
 
 ext {
-	restAssuredVersion = '3.0.7'
+	restAssuredVersion = '4.3.0'
 }
 
 dependencies {
