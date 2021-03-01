@@ -45,7 +45,7 @@ dependencies {
 	//testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation "io.rest-assured:rest-assured:$restAssuredVersion"
+//	testImplementation "io.rest-assured:rest-assured:$restAssuredVersion"
 }
 
 test {
