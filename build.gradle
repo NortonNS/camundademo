@@ -46,7 +46,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation("io.rest-assured:rest-assured:$restAssuredVersion") {
 		exclude group: 'javax.xml.bind', module: 'jaxb-api'
-		exclude group: 'com.sun.xml.bin', module: 'jaxb-osgi'
+		exclude group: 'com.sun.xml.bind', module: 'jaxb-osgi'
 	}
 }
 
