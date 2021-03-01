@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="definitions" name="definitions" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="DrinkDecision" name="DrinkDecision">
+    <decisionTable id="decisionTable">
+      <input id="name">
+        <inputExpression id="InputExpression1747574048">
+          <text>name</text>
+        </inputExpression>
+      </input>
+      <input id="timeOfDay">
+        <inputExpression id="InputExpression1463595830">
+          <text>timeOfDay</text>
+        </inputExpression>
+      </input>
+      <output id="drink" name="drink"/>
+      <rule id="excelRow2">
+        <inputEntry id="A2">
+          <text>"Martin Power"</text>
+        </inputEntry>
+        <inputEntry id="B2">
+          <text>"Morning"</text>
+        </inputEntry>
+        <outputEntry id="C2">
+          <text>"Coffee"</text>
+        </outputEntry>
+      </rule>
+      <rule id="excelRow3">
+        <inputEntry id="A3">
+          <text>"Martin Power"</text>
+        </inputEntry>
+        <inputEntry id="B3">
+          <text>"Afternoon"</text>
+        </inputEntry>
+        <outputEntry id="C3">
+          <text>"Water"</text>
+        </outputEntry>
+      </rule>
+      <rule id="excelRow4">
+        <inputEntry id="A4">
+          <text>"Martin Power"</text>
+        </inputEntry>
+        <inputEntry id="B4">
+          <text>"Evening"</text>
+        </inputEntry>
+        <outputEntry id="C4">
+          <text>"Beer"</text>
+        </outputEntry>
+      </rule>
+      <rule id="excelRow5">
+        <inputEntry id="A5">
+          <text>"Martin Power"</text>
+        </inputEntry>
+        <inputEntry id="B5">
+          <text>"Night"</text>
+        </inputEntry>
+        <outputEntry id="C5">
+          <text>"Tea"</text>
+        </outputEntry>
+      </rule>
+      <rule id="excelRow6">
+        <inputEntry id="A6">
+          <text>"Chantal Warford"</text>
+        </inputEntry>
+        <inputEntry id="B6">
+          <text>"Morning"</text>
+        </inputEntry>
+        <outputEntry id="C6">
+          <text>"Smoothie"</text>
+        </outputEntry>
+      </rule>
+      <rule id="excelRow7">
+        <inputEntry id="A7">
+          <text>"Chantal Warford"</text>
+        </inputEntry>
+        <inputEntry id="B7">
+          <text>"Afternoon"</text>
+        </inputEntry>
+        <outputEntry id="C7">
+          <text>"Water"</text>
+        </outputEntry>
+      </rule>
+      <rule id="excelRow8">
+        <inputEntry id="A8">
+          <text>"Chantal Warford"</text>
+        </inputEntry>
+        <inputEntry id="B8">
+          <text>"Evening"</text>
+        </inputEntry>
+        <outputEntry id="C8">
+          <text>"Tea"</text>
+        </outputEntry>
+      </rule>
+      <rule id="excelRow9">
+        <inputEntry id="A9">
+          <text>"Chantal Warford"</text>
+        </inputEntry>
+        <inputEntry id="B9">
+          <text>"Night"</text>
+        </inputEntry>
+        <outputEntry id="C9">
+          <text>"Water"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
