@@ -39,8 +39,6 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'junit:junit:4.12'
 
-	compileOnly 'javax.servlet:javax.servlet-api:3.0.1'
-
 	runtimeOnly 'com.h2database:h2'
 
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
