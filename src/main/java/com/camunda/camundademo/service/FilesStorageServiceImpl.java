@@ -7,17 +7,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
+import com.camunda.camundademo.exceptions.DirectoryCreationException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -37,7 +34,6 @@ public class FilesStorageServiceImpl implements FilesStorageService {
 
     @Override
     public void save(MultipartFile file) {
-        System.out.println("Save File");
         try {
             Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
         } catch (Exception e) {
@@ -71,36 +67,25 @@ public class FilesStorageServiceImpl implements FilesStorageService {
         try {
             return Files.walk(this.root, 1).filter(path -> !path.equals(this.root)).map(this.root::relativize);
         } catch (IOException e) {
-            throw new RuntimeException("Could not load the files!");
+            throw new DirectoryCreationException("Could not load the files!",e);
         }
     }
 
     @Override
     public Boolean verifyExcel(MultipartFile file) throws IOException, InvalidFormatException {
         InputStream inputStream =  new BufferedInputStream(file.getInputStream());
-
-        if (!isFileExcel(file)) {
+        Boolean fileExcel = isFileExcel(file);
+        if (!Boolean.FALSE.equals(fileExcel)) {
             throw new InvalidFormatException("File not excel");
         }
 
         XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
 
         XSSFSheet firstSheet = workbook.getSheetAt(0);
-        System.out.println(firstSheet.getSheetName());
 
         if (!"DrinkDecision".equals(firstSheet.getSheetName())) {
             throw new IOException("Invalid Sheet - Expecting DrinkDecision");
         }
-
-        for (int i = firstSheet.getFirstRowNum(); i <= firstSheet.getLastRowNum(); i++) {
-            XSSFRow rowFirstSheet = (XSSFRow) firstSheet.getRow(i);
-
-            for (int j = rowFirstSheet.getFirstCellNum(); j < rowFirstSheet.getLastCellNum(); j++) {
-                XSSFCell cellFirstSheet = rowFirstSheet.getCell(j);
-                    System.out.println(cellFirstSheet.toString());
-                    //or use any other display way like logs, files, reports etc.
-                }
-            }
 
         try {
             inputStream.close();
@@ -112,8 +97,11 @@ public class FilesStorageServiceImpl implements FilesStorageService {
         return true;
     }
 
-    @Override
-    public Boolean isFileExcel(MultipartFile file) {
-        return file.getOriginalFilename().toLowerCase().endsWith(".xlsx");
+    private Boolean isFileExcel(MultipartFile file) {
+        if (file != null && file.getOriginalFilename() != null) {
+            return file.getOriginalFilename().toLowerCase().endsWith(".xlsx");
+        }
+
+        return false;
     }
 }

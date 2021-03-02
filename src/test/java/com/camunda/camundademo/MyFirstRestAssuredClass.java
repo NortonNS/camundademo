@@ -14,7 +14,7 @@ import static io.restassured.RestAssured.given;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static org.hamcrest.Matchers.hasSize;
 
-public class myFirstRestAssuredClass {
+class MyFirstRestAssuredClass {
     //final static String url="http://demo.guru99.com/V4/sinkministatement.php?CUSTOMER_ID=68195&PASSWORD=1234!&Account_No=1";
     final static String uri="http://demo.guru99.com/V4/sinkministatement.php";
     final static long responseTimeThreshold = 1200; // milliseconds
@@ -23,7 +23,7 @@ public class myFirstRestAssuredClass {
 
     // Initialize a Specification to be used in other JUNIT Testing
     @BeforeAll
-    public static void initSpec() {
+    static void initSpec() {
         spec = new RequestSpecBuilder()
                 .setContentType(ContentType.JSON)
                 .setBaseUri("http://demo.guru99.com/")
@@ -34,7 +34,7 @@ public class myFirstRestAssuredClass {
 
     // Use pathParam - show how you can pass parameters to the URL path.
     @Test
-    public void getTesting() {
+    void getTesting() {
     	given()
                 .pathParam("raceSeason","2017")
                 .when()
@@ -50,7 +50,7 @@ public class myFirstRestAssuredClass {
 
     // use spec above to set the initial url, content type, etc.
     @Test
-    public void getResponseStatus(){
+    void getResponseStatus(){
         given()
                 .spec(spec)
                 .queryParam("CUSTOMER_ID","68195")
@@ -65,7 +65,7 @@ public class myFirstRestAssuredClass {
 
     // Check to ensure response time is within acceptable limits.
     @Test
-    public void getResponseTime()  {
+    void getResponseTime()  {
         long responseTime = get(uri).timeIn(MILLISECONDS);
         System.out.println("The time taken to fetch the response "+ responseTime + " milliseconds");
 

@@ -32,7 +32,6 @@ public class FilesController {
 
     @PostMapping("/upload")
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
-        System.out.println("Upload file");
         String message = "";
         try {
             storageService.verifyExcel(file);

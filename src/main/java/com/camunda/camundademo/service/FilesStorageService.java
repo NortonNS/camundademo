@@ -20,6 +20,4 @@ public interface FilesStorageService {
     Stream<Path> loadAll();
 
     Boolean verifyExcel(MultipartFile file) throws IOException, InvalidFormatException;
-
-    Boolean isFileExcel(MultipartFile file);
 }

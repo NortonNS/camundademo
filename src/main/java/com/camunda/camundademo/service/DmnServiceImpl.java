@@ -16,7 +16,6 @@ import java.nio.file.Paths;
 public class DmnServiceImpl implements DmnService {
 
     private DmnEngine dmnEngine;
-    private DmnModelInstance dmnModelInstance;
     private DmnDecision decision;
 
     @Override
@@ -25,7 +24,7 @@ public class DmnServiceImpl implements DmnService {
         dmnEngine = DmnEngineConfiguration
                 .createDefaultDmnEngineConfiguration().buildEngine();
 
-        dmnModelInstance = Dmn.readModelFromFile(Paths.get("rules/beverage.dmn").toFile());
+        DmnModelInstance dmnModelInstance = Dmn.readModelFromFile(Paths.get("rules/beverage.dmn").toFile());
         decision = dmnEngine.parseDecision("DrinkDecision", dmnModelInstance);
     }
 
@@ -35,7 +34,6 @@ public class DmnServiceImpl implements DmnService {
         VariableMap variables = Variables.createVariables()
                 .putValue("name", name.replace("%20"," "))
                 .putValue("timeOfDay", timeOfDay);
-        String drink = dmnEngine.evaluateDecision(decision, variables).getSingleResult().getEntry("drink");
-        return drink;
+        return dmnEngine.evaluateDecision(decision, variables).getSingleResult().getEntry("drink");
     }
 }

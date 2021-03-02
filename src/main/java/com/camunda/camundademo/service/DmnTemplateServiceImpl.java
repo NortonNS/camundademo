@@ -18,7 +18,7 @@ import java.nio.file.Paths;
 @Service
 public class DmnTemplateServiceImpl implements DmnTemplateService {
 
-    private final static String DMN_RULES_FOLDER = "rules";
+    private static final String DMN_RULES_FOLDER = "rules";
 
     @PostConstruct
     public void init() throws IOException {

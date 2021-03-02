@@ -22,4 +22,9 @@ public class FileUploadExceptionAdvice extends ResponseEntityExceptionHandler {
     public ResponseEntity<ResponseMessage> handleFileNotExcel(InvalidFormatException exc) {
         return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage("File is not an excel file!"));
     }
+
+    @ExceptionHandler
+    public ResponseEntity<ResponseMessage> handleDirectoryException(DirectoryCreationException exc) {
+        return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage("Directory cannot be created"));
+    }
 }
